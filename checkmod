@@ -1,0 +1,15 @@
+#!/bin/sh
+set -e
+
+check_if_kernel_module_is_loaded(){
+  MODULE="$1"
+  if lsmod | grep "${MODULE}" &> /dev/null ; then
+    echo "${MODULE} is loaded!"
+    return 0
+  else
+    echo "${MODULE} is not loaded!"
+    return 1
+  fi
+}
+
+check_if_kernel_module_is_loaded "$1"
